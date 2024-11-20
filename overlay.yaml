@@ -1,0 +1,126 @@
+overlay: 1.0.0
+info:
+  title: Overlay /Users/katrinasanzi/SDKs/cloudinary/originalschema.yml => /Users/katrinasanzi/SDKs/cloudinary/cloudinary-typescript-sdk/AnalyzeAPI.yml
+  version: 0.0.0
+actions:
+  - target: $
+    update:
+      x-speakeasy-test: true
+  - target: $["info"]["description"]
+    update: |
+      Use the Analyze API to analyze any external asset and return details based on the type of analysis requested.
+
+      Currently supports the following analysis options:
+        * [AI Vision - Tagging](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#tagging_mode)
+        * [AI Vision - Moderation](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#moderation_mode)
+        * [AI Vision - General](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#general_mode)
+        * [Captioning](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning)
+        * [Cld Fashion](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Cld Text](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Coco](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Google tagging](https://cloudinary.com/documentation/google_auto_tagging_addon)
+        * [Human Anatomy](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Lvis](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Shop Classifier](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+        * [Unidet](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+
+        **Notes**:
+        * The Analyze API is currently in development and is available as a Public Beta, which means we value your feedback, so please feel free to [share any thoughts with us](https://support.cloudinary.com/hc/en-us/requests/new).
+        * The analysis options require an active subscription to the relevant add-on. Learn more about [registering for add-ons](https://cloudinary.com/documentation/cloudinary_add_ons#registering_for_add_ons).
+
+        The API supports both Basic Authentication using your Cloudinary API Key and API Secret (which can be found on the Dashboard page of your [Cloudinary Console](https://console.cloudinary.com/pm)) or OAuth2 ([Contact support](https://support.cloudinary.com/hc/en-us/requests/new) for more information regarding OAuth).
+  - target: $
+    update:
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_general"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_moderation"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_tagging"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/captioning"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_fashion"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_text"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/coco"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/google_tagging"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/human_anatomy"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/lvis"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/shop_classifier"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/unidet"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/{cloud_name}/analysis/analyze/uri"]["post"]["security"]
+    remove: true
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/google_logo_detection"]
+    remove: true
+  - target: $["components"]["schemas"]["Source"]["oneOf"][0]
+    update:
+      type: object
+  - target: $["components"]["schemas"]["Source"]["oneOf"][0]
+    update:
+      x-speakeasy-name-override: uri
+  - target: $["components"]["schemas"]["Source"]["oneOf"][0]["required"][0]
+    update: uri
+  - target: $["components"]["schemas"]["Source"]["oneOf"][0]
+    update:
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: The URI of the asset to analyze
+          example: https://res.cloudinary.com/demo/image/upload/sample.jpg
+  - target: $["components"]["schemas"]["Source"]["oneOf"][0]
+    update:
+      example:
+        uri: https://res.cloudinary.com/demo/image/upload/sample.jpg
+  - target: $["components"]["schemas"]["Source"]["oneOf"][1]
+    update:
+      type: object
+  - target: $["components"]["schemas"]["Source"]["oneOf"][1]
+    update:
+      x-speakeasy-name-override: asset_id
+  - target: $["components"]["schemas"]["Source"]["oneOf"][1]["required"][0]
+    update: asset_id
+  - target: $["components"]["schemas"]["Source"]["oneOf"][1]
+    update:
+      properties:
+        asset_id:
+          type: string
+          description: The asset ID to analyze
+          example: e12345b5c456c8901bbb0efc00c0fcf
+  - target: $["components"]["schemas"]["Source"]["type"]
+    remove: true
+  - target: $["components"]["schemas"]["Source"]["properties"]
+    remove: true
+  - target: $["components"]["schemas"]["AnalysisType"]["enum"][*]
+    remove: true
+  - target: $["components"]["schemas"]["AnalysisType"]["enum"]
+    update:
+      - ai_vision_tagging
+      - ai_vision_moderation
+      - ai_vision_general
+      - captioning
+      - cld_fashion
+      - cld_text
+      - coco
+      - google_tagging
+      - human_anatomy
+      - lvis
+      - shop_classifier
+      - unidet
+  - target: $["components"]["schemas"]["AnalyzeGoogleLogoDetectionRequest"]
+    remove: true
+  - target: $["components"]["schemas"]["AnalyzeGoogleLogoDetectionResponse"]
+    remove: true
+  - target: $["components"]["schemas"]["GoogleLogoDetectionAnalysisData"]
+    remove: true

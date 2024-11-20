@@ -1,0 +1,9 @@
+# AnalyzeUnidetRequest
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `CloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
+| `BaseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |

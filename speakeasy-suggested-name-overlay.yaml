@@ -1,0 +1,96 @@
+overlay: 1.0.0
+info:
+  title: Speakeasy Suggestions - Analyze API (Beta)
+  version: 0.0.1
+actions:
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/google_tagging"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeGoogleTagging
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeGoogleTagging()
+      before: sdk.Analysis.analyze_google_tagging()
+      type: method-name
+  - target: $["paths"]["/{cloud_name}/analysis/analyze/uri"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeUri
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeUri()
+      before: sdk.Analysis.analyze_uri()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_text"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeCldText
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeCldText()
+      before: sdk.Analysis.analyze_cld_text()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_general"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeAiVisionGeneral
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeAiVisionGeneral()
+      before: sdk.Analysis.analyze_ai_vision_general()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_fashion"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeCldFashion
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeCldFashion()
+      before: sdk.Analysis.analyze_cld_fashion()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_tagging"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeAiVisionTagging
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeAiVisionTagging()
+      before: sdk.Analysis.analyze_ai_vision_tagging()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/coco"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeCoco
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeCoco()
+      before: sdk.Analysis.analyze_coco()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/shop_classifier"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeShopClassifier
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeShopClassifier()
+      before: sdk.Analysis.analyze_shop_classifier()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_moderation"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeAiVisionModeration
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeAiVisionModeration()
+      before: sdk.Analysis.analyze_ai_vision_moderation()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/captioning"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeCaptioning
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeCaptioning()
+      before: sdk.Analysis.analyze_captioning()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/lvis"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeLvis
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeLvis()
+      before: sdk.Analysis.analyze_lvis()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/human_anatomy"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeHumanAnatomy
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeHumanAnatomy()
+      before: sdk.Analysis.analyze_human_anatomy()
+      type: method-name
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/unidet"]["post"]
+    update:
+      x-speakeasy-name-override: analyzeUnidet
+    x-speakeasy-metadata:
+      after: sdk.analysis.analyzeUnidet()
+      before: sdk.Analysis.analyze_unidet()
+      type: method-name

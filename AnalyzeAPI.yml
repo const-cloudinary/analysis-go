@@ -1,0 +1,1349 @@
+openapi: 3.0.3
+info:
+  title: Analyze API (Beta)
+  description: |
+    Use the Analyze API to analyze any external asset and return details based on the type of analysis requested.
+    
+    Currently supports the following analysis options:
+      * [AI Vision - Tagging](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#tagging_mode)
+      * [AI Vision - Moderation](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#moderation_mode)
+      * [AI Vision - General](https://cloudinary.com/documentation/cloudinary_ai_vision_addon#general_mode)
+      * [Captioning](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning)
+      * [Cld Fashion](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Cld Text](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Coco](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Google Tagging](https://cloudinary.com/documentation/google_auto_tagging_addon)
+      * [Human Anatomy](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Lvis](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Shop Classifier](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+      * [Unidet](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#supported_content_aware_detection_models)
+    
+      **Notes**: 
+      * The Analyze API is currently in development and is available as a Public Beta, which means we value your feedback, so please feel free to [share any thoughts with us](https://support.cloudinary.com/hc/en-us/requests/new).
+      * The analysis options require an active subscription to the relevant add-on. Learn more about [registering for add-ons](https://cloudinary.com/documentation/cloudinary_add_ons#registering_for_add_ons).
+    
+      The API supports both Basic Authentication using your Cloudinary API Key and API Secret (which can be found on the Dashboard page of your [Cloudinary Console](https://console.cloudinary.com/pm)) or OAuth2 ([Contact support](https://support.cloudinary.com/hc/en-us/requests/new) for more information regarding OAuth).
+  version: 0.0.2
+servers:
+  - url: https://api.cloudinary.com/v2
+tags:
+  - name: Analysis
+paths:
+  /analysis/{cloud_name}/analyze/ai_vision_general:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - AI Vision General
+      description: The General mode serves a wide array of applications by providing detailed answers to diverse questions about an image. Users can inquire about any aspect of an image, such as identifying objects, understanding scenes, or interpreting text within the image.
+      operationId: analyze_ai_vision_general
+      security:
+        - basicAuth: [ ]
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeAIVisionGeneralRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/AnalyzeAIVisionGeneralUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/AnalyzeAIVisionGeneralAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeAIVisionGeneralResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/ai_vision_moderation:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - AI Vision Moderation
+      description: The Moderation mode accepts multiple questions about an image, to which the response provides concise answers of "yes," "no," or "unknown." This functionality allows for a nuanced evaluation of whether the image adheres to specific content policies, creative specs, or aesthetic criteria.
+      operationId: analyze_ai_vision_moderation
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeAIVisionModerationRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/AnalyzeAIVisionModerationUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/AnalyzeAIVisionModerationAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeAIVisionModerationResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/ai_vision_tagging:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - AI Vision Tagging
+      description: The Tagging mode accepts a list of tag names along with their corresponding descriptions. If the image matches the description, which may encompass various elements, it will be appropriately tagged. This approach enables customers to align with their own brand taxonomy, offering a dynamic, flexible, and open method for image classification.
+      operationId: analyze_ai_vision_tagging
+      security:
+        - basicAuth: [ ]
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeAIVisionTaggingRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/AnalyzeAIVisionTaggingUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/AnalyzeAIVisionTaggingAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeAIVisionTaggingResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/captioning:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Captioning
+      description: Provides a caption for an image.
+      operationId: analyze_captioning
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeCaptioningRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeCaptioningResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/cld_fashion:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Cld-Fashion
+      description: Analyze an image using the [Cld-Fashion](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's fashion model is specifically dedicated to items of clothing. The response includes attributes of the clothing identified, for example whether the garment contains pockets, its material and the fastenings used.
+      operationId: analyze_cld_fashion
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeCldFashionRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeCldFashionResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/cld_text:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Cld-Text
+      description: Analyze an image using the [Cld-Text](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's text model tells you if your image includes text, and where it's located. Used with image tagging, you can then search for images that contain blocks of text. Used with object-aware cropping, you can choose to keep only the text part, or specify a crop that avoids the text.
+      operationId: analyze_cld_text
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeCldTextRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeCldTextResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/coco:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Coco
+      description: Analyze an image using the [Coco](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [Common Objects in Context](https://cocodataset.org/) model contains just 80 common objects.
+      operationId: analyze_coco
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeCocoRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeCocoResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/google_logo_detection:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Google Logo Detection
+      description: Detects popular product logos within an image.
+      operationId: analyze_google_logo_detection
+      security:
+        - basicAuth: [ ]
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeGoogleLogoDetectionRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeGoogleLogoDetectionResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/google_tagging:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Google Tagging
+      description: Provides tags for an image using Google's tagging service.
+      operationId: analyze_google_tagging
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeGoogleTaggingRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeGoogleTaggingResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/human_anatomy:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Human Anatomy
+      description: Analyze an image using the [Human Anatomy](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's human anatomy model identifies parts of the human body in an image. It works best when the majority of a human body is detected in the image.
+      operationId: analyze_human_anatomy
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeHumanAnatomyRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeHumanAnatomyResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/lvis:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Lvis
+      description: Analyze an image using the [Lvis](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [Large Vocabulary Instance Segmentation](https://www.lvisdataset.org/) model contains thousands of general objects.
+      operationId: analyze_lvis
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeLvisRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeLvisResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/shop_classifier:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Shop Classifier
+      description: Analyze an image using the [Shop Classifier](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's shop classifier model detects if the image is a product image taken in a studio, or if it's a natural image.
+      operationId: analyze_shop_classifier
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeShopClassifierRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeShopClassifierResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /analysis/{cloud_name}/analyze/unidet:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      tags:
+        - Analysis
+      summary: Analyze - Unidet
+      description: Analyze an image using the [Unidet](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [UniDet](https://github.com/xingyizhou/UniDet) model is a unified model, combining a number of object models, including [Objects365](https://www.objects365.org/overview.html), which focuses on diverse objects in the wild.
+      operationId: analyze_unidet
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeUnidetRequest"
+            examples:
+              UriExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeUriExample'
+              AssetIDExample:
+                $ref: '#/components/examples/ParameterlessAnalyzeAssetIDExample'
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeUnidetResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+  /{cloud_name}/analysis/analyze/uri:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      deprecated: true
+      tags:
+        - Analysis
+      summary: Analyze an asset
+      description: |
+        Analyzes an asset with the requested analysis type.
+      operationId: analyze_uri
+      security:
+        - basicAuth: []
+        - OAuth2:
+            - media_analysis
+      requestBody:
+        required: true
+        description: A JSON object containing request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeUriRequest"
+      responses:
+        '200':
+          description: Analysis succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeResponse'
+        '400':
+          $ref: "#/components/responses/BadRequestResponse"
+        '401':
+          $ref: "#/components/responses/UnauthorizedResponse"
+        '403':
+          $ref: "#/components/responses/ForbiddenResponse"
+        '404':
+          $ref: "#/components/responses/NotFoundResponse"
+        '429':
+          $ref: "#/components/responses/RateLimitedResponse"
+        '500':
+          $ref: "#/components/responses/InternalServerErrorResponse"
+      x-codeSamples:
+        - lang: 'PHP'
+          label: 'PHP'
+          source: |
+            $result = $api->analyze("uri", "captioning", "https://res.cloudinary.com/demo/image/upload/dog");
+        - lang: 'Ruby'
+          label: 'Ruby'
+          source:  |
+            result = Cloudinary::Api.analyze("uri", "captioning", uri: "https://res.cloudinary.com/demo/image/upload/dog")
+        - lang: 'Python'
+          label: 'Python'
+          source: |
+            result = cloudinary.api.analyze("input_type": "uri", "analysis_type": "captioning", "uri": "https://res.cloudinary.com/demo/image/upload/dog")
+        - lang: 'NodeJS'
+          label: 'NodeJS'
+          source: |
+            cloudinary.v2.analysis.analyze_uri("https://res.cloudinary.com/demo/image/upload/dog", "captioning").then(result=>console.log(result));
+        - lang: 'Java'
+          label: 'Java'
+          source: |
+            result = cloudinary.api.analyze("uri", "captioning", "https://res.cloudinary.com/demo/image/upload/dog", ObjectUtils.emptyMap());
+        - lang: 'Go'
+          label: 'Go'
+          source: |
+            resp, err := cld.Admin.Analyze(ctx, admin.AnalyzeParams{Uri: "https://res.cloudinary.com/demo/image/upload/dog", AnalysisType: "captioning"})
+        - lang: '.NET'
+          label: '.NET'
+          source: |
+            result = cloudinary.Analyze(new AnalyzeParams(){AnalysisType = "captioning", Uri = "https://res.cloudinary.com/demo/image/upload/dog"});
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://oauth.cloudinary.com/oauth2/auth
+          tokenUrl: https://oauth.cloudinary.com/oauth2/token
+          scopes:
+            media_analysis: Analyze media
+  parameters:
+    cloudName:
+      in: path
+      name: cloud_name
+      description: The name of your Cloudinary cloud
+      example: your-cloud-name
+      schema:
+        type: string
+      required: true
+  responses:
+    BadRequestResponse:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnauthorizedResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ForbiddenResponse:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundResponse:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimitedResponse:
+      description: Rate limited
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerErrorResponse:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Source:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The asset ID to analyze
+          example: e12345b5c456c8901bbb0efc00c0fcf
+        uri:
+          type: string
+          format: uri
+          description: The URI of the asset to analyze
+          example: https://res.cloudinary.com/demo/image/upload/sample.jpg
+      oneOf:
+        - required: ['asset_id']
+        - required: ['uri']
+    AnalysisPayload:
+      type: object
+      required:
+        - entity
+        - analysis
+      properties:
+        entity:
+          type: string
+          example: https://res.cloudinary.com/demo/image/upload/sample.jpg
+        analysis:
+          type: object
+      example: { entity: "https://res.cloudinary.com/demo/image/upload/sample.jpg", analysis: { } }
+    AnalyzeUriRequest:
+      type: object
+      properties:
+        uri:
+          type: string
+          format: uri
+          example: https://res.cloudinary.com/demo/image/upload/sample.jpg
+          description: The URI of the asset to analyze
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisType'
+    BaseAnalyzeRequest:
+      properties:
+        source:
+          $ref: "#/components/schemas/Source"
+      required:
+        - source
+    AnalyzeAIVisionGeneralRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+        - type: object
+          properties:
+            prompts:
+              type: array
+              description: One or more prompts of open questions or tasks with an open answer
+              items:
+                type: string
+                example:
+                  - Please describe this image in detail
+                  - Does this image contain an animal?
+              minItems: 1
+              maxItems: 10
+    AnalyzeAIVisionModerationRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+        - type: object
+          properties:
+            rejection_questions:
+              type: array
+              description: A list of yes/no questions
+              items:
+                type: string
+                example: Does the image contain any violent activity?
+              minItems: 1
+              maxItems: 10
+    AnalyzeAIVisionTaggingRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+        - type: object
+          properties:
+            tag_definitions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of the tag to apply. This can be any string and does not affect the decision process
+                    example: cigarettes
+                  description:
+                    type: string
+                    description: A description to be used by the AI to determine whether the tag should be applied
+                    example: Does the image contain a pack of cigarettes?
+                required:
+                  - name
+                  - description
+              minItems: 1
+              maxItems: 10
+              example:
+                - name: cigarettes
+                  description: Does the image contain a pack of cigarettes?
+          required:
+            - tag_definitions
+    AnalyzeCaptioningRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeCldFashionRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeCldTextRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeCocoRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeGoogleLogoDetectionRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeGoogleTaggingRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeHumanAnatomyRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeLvisRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeShopClassifierRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    AnalyzeUnidetRequest:
+      allOf:
+        - $ref: "#/components/schemas/BaseAnalyzeRequest"
+    BaseAnalyzeResponse:
+      type: object
+      properties:
+        limits:
+          $ref: '#/components/schemas/Limits'
+        request_id:
+          type: string
+          example: 17c3b70c5096df0e77e838323abb7029
+    AnalyzeAIVisionGeneralResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/AIVisionGeneralAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    AIVisionGeneralAnalysisData:
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+          example: [ { value: "The image contains one cat." }, { value: "The cat is on top of the table." } ]
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - responses
+    AnalyzeAIVisionModerationResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/AIVisionModerationAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    AIVisionModerationAnalysisData:
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            type: object
+            properties:
+              prompt:
+                type: string
+              value:
+                type: string
+                enum:
+                  - yes
+                  - no
+                  - unknown
+          example:
+            - { prompt: "Does the image contain any violent activity?", value: "no" }
+            - { prompt: "Is there any nudity in the image?", value: "yes" }
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - responses
+    AnalyzeAIVisionTaggingResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/AIVisionTaggingAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    AIVisionTaggingAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+          example: [ { name: "cat" }, { name: "table" } ]
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeCaptioningResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/CaptioningAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    CaptioningAnalysisData:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            caption:
+              type: string
+          required:
+            - caption
+          example: { caption: "A cat sitting on a table" }
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - data
+    AnalyzeCldFashionResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/CldFashionAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    CldFashionAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeCldTextResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/CldTextAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    CldTextAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeCocoResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/CocoAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    CocoAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeGoogleLogoDetectionResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/GoogleLogoDetectionAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    GoogleLogoDetectionAnalysisData:
+      type: object
+      properties:
+        logo_annotations:
+          type: array
+          items:
+            type: object
+            properties:
+              mid:
+                type: string
+              description:
+                type: string
+              score:
+                type: number
+              bounding_poly:
+                type: object
+                properties:
+                  vertices:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        x:
+                          type: integer
+                        y:
+                          type: integer
+            required:
+              - description
+              - score
+              - bounding_poly
+      example: { "logo_annotations": [{ "mid": "/m/045c7b", "description": "google", "score": 0.980325, "bounding_poly": { "vertices": [{ "x": 12, "y": 42}, { "x": 439, "y": 42 }, { "x": 439, "y": 285 }, { "x": 12, "y": 285 }]}}]}
+      required:
+        - logo_annotations
+    AnalyzeGoogleTaggingResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/GoogleTaggingAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    GoogleTaggingAnalysisData:
+      type: object
+      properties:
+        label_annotations:
+          type: object
+          properties:
+            labels:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  score:
+                    type: number
+                required:
+                  - label
+                  - score
+          example: { labels: [ { label: "cat", score: 0.9 }, { label: "table", score: 0.8 } ] }
+      required:
+        - label_annotations
+    AnalyzeHumanAnatomyResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/HumanAnatomyAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    HumanAnatomyAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeLvisResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/LvisAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    LvisAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeShopClassifierResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/ShopClassifierAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    ShopClassifierAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalyzeUnidetResponse:
+      allOf:
+        - type: object
+          properties:
+            data:
+              properties:
+                entity:
+                  type: string
+                analysis:
+                  $ref: "#/components/schemas/UnidetAnalysisData"
+        - $ref: "#/components/schemas/BaseAnalyzeResponse"
+    UnidetAnalysisData:
+      type: object
+      properties:
+        tags:
+          type: object
+        model_version:
+          type: integer
+          example: 1
+      required:
+        - tags
+    AnalysisType:
+      type: string
+      description: The type of analysis to run
+      enum:
+        - ai_vision_tagging
+        - ai_vision_moderation
+        - ai_vision_general
+        - captioning
+        - cld_fashion
+        - cld_text
+        - coco
+        - google_logo_detection
+        - google_tagging
+        - human_anatomy
+        - lvis
+        - shop_classifier
+        - unidet
+    AnalyzeResponse:
+      type: object
+      required: [data, request_id]
+      properties:
+        data:
+          $ref: '#/components/schemas/AnalysisPayload'
+        limits:
+          $ref: '#/components/schemas/Limits'
+        request_id:
+          type: string
+          example: 17c3b70c5096df0e77e838323abb7029
+    Limits:
+      type: object
+      properties:
+        usage:
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/Feature'
+            count:
+              type: integer
+          example:
+            type: ai_vision
+            count: 123
+    Feature:
+      type: string
+      enum:
+        - google_tagging
+        - object_detection
+        - ai_vision
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          example:
+            category: user_error
+            code: MA_00001
+            message: missing parameters
+            details:
+              parameters: [ param1, param2 ]
+            request_id: 17c3b70c5096df0e77e838323abb7029
+          properties:
+            category:
+              type: string
+              enum: [user_error, auth_error, server_error, rate_limit_error]
+              example: user_error
+            code:
+              type: string
+              example: MA_00001
+            message:
+              type: string
+              example: missing parameters
+            details:
+              type: object
+              example:
+                parameters: [ uri, analysis_type ]
+            request_id:
+              type: string
+              example: 17c3b70c5096df0e77e838323abb7029
+  examples:
+    ParameterlessAnalyzeUriExample:
+      summary: Passing an image URL to be analyzed
+      value:
+        source:
+          uri: "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+    ParameterlessAnalyzeAssetIDExample:
+      summary: Passing an asset ID to be analyzed
+      value:
+        source:
+          asset_id: e12345b5c456c8901bbb0efc00c0fcf
+    AnalyzeAIVisionGeneralUriExample:
+      summary: Passing an image URL to AI Vision General
+      value:
+        source:
+          uri: "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+        prompts:
+          - Describe this image in detail
+          - Does this image contain an insect?
+    AnalyzeAIVisionGeneralAssetIDExample:
+      summary: Passing an asset ID to AI Vision General
+      value:
+        source:
+          asset_id: e12345b5c456c8901bbb0efc00c0fcf
+        prompts:
+          - Describe this image in detail
+          - Does this image contain an insect?
+    AnalyzeAIVisionModerationUriExample:
+      summary: Passing an image URL to AI Vision Moderation
+      value:
+        source:
+          uri: "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+        rejection_questions:
+          - Does this image contain any violent activity?
+          - Is there any nudity in the image?
+    AnalyzeAIVisionModerationAssetIDExample:
+      summary: Passing an asset ID to AI Vision Moderation
+      value:
+        source:
+          asset_id: e12345b5c456c8901bbb0efc00c0fcf
+        rejection_questions:
+          - Does this image contain any violent activity?
+          - Is there any nudity in the image?
+    AnalyzeAIVisionTaggingUriExample:
+      summary: Passing an image URL to AI Vision Tagging
+      value:
+        source:
+          uri: "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+        tag_definitions:
+          - name: cigarettes
+            description: Does the image contain a pack of cigarettes?
+          - name: furniture
+            description: Does the image contain any tables, chairs, couches or sofas?
+    AnalyzeAIVisionTaggingAssetIDExample:
+      summary: Passing an asset ID to AI Vision Tagging
+      value:
+        source:
+          asset_id: e12345b5c456c8901bbb0efc00c0fcf
+        tag_definitions:
+          - name: cigarettes
+            description: Does the image contain a pack of cigarettes?
+          - name: furniture
+            description: Does the image contain any tables, chairs, couches or sofas?

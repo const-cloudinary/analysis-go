@@ -1,0 +1,9 @@
+# AnalyzeAIVisionTaggingRequest
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Source`                                                                                    | [components.Source](../../models/components/source.md)                                      | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| `TagDefinitions`                                                                            | [][components.TagDefinitions](../../models/components/tagdefinitions.md)                    | :heavy_check_mark:                                                                          | N/A                                                                                         | [<br/>{<br/>"name": "cigarettes",<br/>"description": "Does the image contain a pack of cigarettes?"<br/>}<br/>] |

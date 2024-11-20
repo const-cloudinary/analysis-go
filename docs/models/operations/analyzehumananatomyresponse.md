@@ -1,0 +1,9 @@
+# AnalyzeHumanAnatomyResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                        | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `AnalyzeHumanAnatomyResponse`                                                                     | [*components.AnalyzeHumanAnatomyResponse](../../models/components/analyzehumananatomyresponse.md) | :heavy_minus_sign:                                                                                | Analysis succeeded                                                                                |

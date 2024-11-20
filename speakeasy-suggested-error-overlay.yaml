@@ -1,0 +1,593 @@
+overlay: 1.0.0
+info:
+  title: Response Codes Overlay
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/human_anatomy"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_human_anatomy:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_human_anatomy:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/lvis"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_lvis:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_lvis:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/shop_classifier"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_shop_classifier:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_shop_classifier:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/unidet"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_unidet:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_unidet:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/{cloud_name}/analysis/analyze/uri"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_uri:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_uri:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_moderation"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_ai_vision_moderation:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_ai_vision_moderation:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_text"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_cld_text:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_cld_text:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/coco"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_coco:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_coco:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/cld_fashion"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_cld_fashion:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_cld_fashion:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/google_tagging"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_google_tagging:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_google_tagging:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_general"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_ai_vision_general:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_ai_vision_general:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/ai_vision_tagging"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_ai_vision_tagging:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_ai_vision_tagging:
+        	catch(Unauthorized) { ... }
+  - target: $["paths"]["/analysis/{cloud_name}/analyze/captioning"]["post"]["responses"]
+    update:
+      '413':
+        $ref: '#/components/responses/BadRequestResponse'
+      '414':
+        $ref: '#/components/responses/BadRequestResponse'
+      '415':
+        $ref: '#/components/responses/BadRequestResponse'
+      '422':
+        $ref: '#/components/responses/BadRequestResponse'
+      '431':
+        $ref: '#/components/responses/BadRequestResponse'
+      '510':
+        $ref: '#/components/responses/BadRequestResponse'
+      '407':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '511':
+        $ref: '#/components/responses/UnauthorizedResponse'
+      '501':
+        $ref: '#/components/responses/NotFoundResponse'
+      '505':
+        $ref: '#/components/responses/NotFoundResponse'
+      '502':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '503':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '506':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '507':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '508':
+        $ref: '#/components/responses/InternalServerErrorResponse'
+      '408':
+        $ref: '#/components/responses/Timeout'
+      '504':
+        $ref: '#/components/responses/Timeout'
+    x-speakeasy-metadata:
+      type: error-names
+      before: |-
+        analyze_captioning:
+        	catch(SDKError) { ... }
+      after: |-
+        analyze_captioning:
+        	catch(Unauthorized) { ... }
+  - target: $.components.schemas
+    update:
+      Timeout:
+        type: object
+        properties:
+          message:
+            type: string
+        additionalProperties: true
+  - target: $.components.responses
+    update:
+      Timeout:
+        description: Timeouts occurred with the request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timeout'
