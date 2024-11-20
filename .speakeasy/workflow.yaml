@@ -1,0 +1,20 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Cloudinary-OAS:
+        inputs:
+            - location: ./AnalyzeAPI.yml
+        overlays:
+            - location: ./overlay.yaml
+            - location: ./speakeasy-suggested-name-overlay.yaml
+            - location: ./speakeasy-suggested-error-overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/cloudinary/cloudinary-test/cloudinary-oas
+targets:
+    analysis-go:
+        target: go
+        source: Cloudinary-OAS
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary-test/cloudinary-oas-code-samples
+            blocking: false

@@ -1,0 +1,37 @@
+speakeasyVersion: 1.441.0
+sources:
+    Cloudinary-OAS:
+        sourceNamespace: cloudinary-oas
+        sourceRevisionDigest: sha256:fd26cdd01c1e36495362d2cf86b934bcd10a10aa5b153e17f31491ed93f26387
+        sourceBlobDigest: sha256:e95e555922e1771c20fa3db99b36bb8a740d42317a5f0ec2a919d2d835568218
+        tags:
+            - latest
+targets:
+    analysis-go:
+        source: Cloudinary-OAS
+        sourceNamespace: cloudinary-oas
+        sourceRevisionDigest: sha256:fd26cdd01c1e36495362d2cf86b934bcd10a10aa5b153e17f31491ed93f26387
+        sourceBlobDigest: sha256:e95e555922e1771c20fa3db99b36bb8a740d42317a5f0ec2a919d2d835568218
+        codeSamplesNamespace: cloudinary-oas-code-samples
+        codeSamplesRevisionDigest: sha256:4b67acc62a5dcaa567810bee307ab8eb7d51d59629a92d323ea068d3deb5e01e
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Cloudinary-OAS:
+            inputs:
+                - location: ./AnalyzeAPI.yml
+            overlays:
+                - location: ./overlay.yaml
+                - location: ./speakeasy-suggested-name-overlay.yaml
+                - location: ./speakeasy-suggested-error-overlay.yaml
+            registry:
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary-test/cloudinary-oas
+    targets:
+        analysis-go:
+            target: go
+            source: Cloudinary-OAS
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/cloudinary/cloudinary-test/cloudinary-oas-code-samples
+                blocking: false
