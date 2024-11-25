@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
 	"log"
 	"os"
 )

@@ -1,12 +1,14 @@
 lockVersion: 2.0.0
 id: 38b60592-b153-4ed6-beab-fe9efb55ca7d
 management:
-  docChecksum: fe21508f8efed961f64a9cd1c70c932f
-  docVersion: 0.0.2
-  speakeasyVersion: 1.441.0
-  generationVersion: 2.460.1
-  releaseVersion: 0.2.0
-  configChecksum: c3d3cf498651ea496498c112b78af69c
+  docChecksum: 0f6652c937350714a34963c3e2d49927
+  docVersion: 0.0.3
+  speakeasyVersion: 1.444.3
+  generationVersion: 2.461.4
+  releaseVersion: 0.2.1
+  configChecksum: 89b1745583c3f44b1902a41c77993778
+  repoURL: https://github.com/const-cloudinary/analysis-go.git
+  installationURL: https://github.com/const-cloudinary/analysis-go
 features:
   go:
     additionalDependencies: 0.1.0
@@ -23,7 +25,7 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     responseFormat: 0.1.2
-    retries: 2.83.0
+    retries: 2.83.1
     sdkHooks: 0.1.0
     tests: 0.6.0
     unions: 2.85.10
@@ -405,7 +407,8 @@ examples:
           application/json: {"data": {"analysis": {"data": {"caption": "A cat sitting on a table"}, "model_version": 1}}, "limits": {"usage": {"type": "ai_vision", "count": 123}}, "request_id": "17c3b70c5096df0e77e838323abb7029"}
         "400":
           application/json: {"error": {"category": "user_error", "code": "MA_00001", "message": "missing parameters", "request_id": "17c3b70c5096df0e77e838323abb7029"}}
-        "408": {}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
   analyze_cld_fashion:
     speakeasy-default-analyze-cld-fashion:
       requestBody:
@@ -640,7 +643,8 @@ examples:
           application/json: {"data": {"analysis": {"model_version": 1}}, "limits": {"usage": {"type": "ai_vision", "count": 123}}, "request_id": "17c3b70c5096df0e77e838323abb7029"}
         "400":
           application/json: {"error": {"category": "user_error", "code": "MA_00001", "message": "missing parameters", "request_id": "17c3b70c5096df0e77e838323abb7029"}}
-        "408": {}
+        "408":
+          application/json: {"key": "<value>"}
   analyze_lvis:
     speakeasy-default-analyze-lvis:
       requestBody:
@@ -720,7 +724,8 @@ examples:
           application/json: {"data": {"analysis": {"model_version": 1}}, "limits": {"usage": {"type": "ai_vision", "count": 123}}, "request_id": "17c3b70c5096df0e77e838323abb7029"}
         "400":
           application/json: {"error": {"category": "user_error", "code": "MA_00001", "message": "missing parameters", "request_id": "17c3b70c5096df0e77e838323abb7029"}}
-        "408": {}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
     "":
       parameters:
         path:

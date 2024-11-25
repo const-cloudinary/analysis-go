@@ -5,10 +5,10 @@ package analysisgo
 import (
 	"context"
 	"fmt"
-	"github.com/cloudinary/analysis-go/internal/hooks"
-	"github.com/cloudinary/analysis-go/internal/utils"
-	"github.com/cloudinary/analysis-go/models/components"
-	"github.com/cloudinary/analysis-go/retry"
+	"github.com/const-cloudinary/analysis-go/internal/hooks"
+	"github.com/const-cloudinary/analysis-go/internal/utils"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	"github.com/const-cloudinary/analysis-go/retry"
 	"net/http"
 	"time"
 )
@@ -103,6 +103,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 //     The API supports both Basic Authentication using your Cloudinary API Key and API Secret (which can be found on the Dashboard page of your [Cloudinary Console](https://console.cloudinary.com/pm)) or OAuth2 ([Contact support](https://support.cloudinary.com/hc/en-us/requests/new) for more information regarding OAuth).
 type Analysis struct {
+	// Analyze assets
 	Analysis *AnalysisSDK
 
 	sdkConfiguration sdkConfiguration
@@ -180,10 +181,10 @@ func New(opts ...SDKOption) *Analysis {
 	sdk := &Analysis{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "0.0.2",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.460.1",
-			UserAgent:         "speakeasy-sdk/go 0.2.0 2.460.1 0.0.2 github.com/cloudinary/analysis-go",
+			OpenAPIDocVersion: "0.0.3",
+			SDKVersion:        "0.2.1",
+			GenVersion:        "2.461.4",
+			UserAgent:         "speakeasy-sdk/go 0.2.1 2.461.4 0.0.3 github.com/const-cloudinary/analysis-go",
 			Hooks:             hooks.New(),
 		},
 	}

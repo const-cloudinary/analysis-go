@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/cloudinary/analysis-go/models/components"
+	"github.com/const-cloudinary/analysis-go/models/components"
 )
 
 type AnalyzeAiVisionGeneralRequest struct {

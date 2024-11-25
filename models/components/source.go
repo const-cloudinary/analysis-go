@@ -5,7 +5,7 @@ package components
 import (
 	"errors"
 	"fmt"
-	"github.com/cloudinary/analysis-go/internal/utils"
+	"github.com/const-cloudinary/analysis-go/internal/utils"
 )
 
 type AssetID struct {

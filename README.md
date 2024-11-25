@@ -57,7 +57,7 @@ Currently supports the following analysis options:
 
 To add the SDK as a dependency to your project:
 ```bash
-go get github.com/cloudinary/analysis-go
+go get github.com/const-cloudinary/analysis-go
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -71,8 +71,8 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
 	"log"
 	"os"
 )
@@ -147,9 +147,9 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
-	"github.com/cloudinary/analysis-go/retry"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	"github.com/const-cloudinary/analysis-go/retry"
 	"log"
 	"models/operations"
 	"os"
@@ -203,9 +203,9 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
-	"github.com/cloudinary/analysis-go/retry"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	"github.com/const-cloudinary/analysis-go/retry"
 	"log"
 	"os"
 )
@@ -277,9 +277,9 @@ package main
 import (
 	"context"
 	"errors"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
-	"github.com/cloudinary/analysis-go/models/sdkerrors"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	"github.com/const-cloudinary/analysis-go/models/sdkerrors"
 	"log"
 	"os"
 )
@@ -342,8 +342,8 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
 	"log"
 	"os"
 )
@@ -418,10 +418,10 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security schemes globally:
 
-| Name        | Type   | Scheme       | Environment Variable  |
-| ----------- | ------ | ------------ | --------------------- |
-| `BasicAuth` | http   | HTTP Basic   | `ANALYSIS_BASIC_AUTH` |
-| `OAuth2`    | oauth2 | OAuth2 token | `ANALYSIS_O_AUTH2`    |
+| Name        | Type   | Scheme       | Environment Variable    |
+| ----------- | ------ | ------------ | ----------------------- |
+| `BasicAuth` | http   | HTTP Basic   | `CLOUDINARY_BASIC_AUTH` |
+| `OAuth2`    | oauth2 | OAuth2 token | `CLOUDINARY_O_AUTH2`    |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go
@@ -429,8 +429,8 @@ package main
 
 import (
 	"context"
-	analysisgo "github.com/cloudinary/analysis-go"
-	"github.com/cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
 	"log"
 	"os"
 )
