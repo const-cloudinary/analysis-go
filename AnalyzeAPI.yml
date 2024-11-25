@@ -23,12 +23,15 @@ info:
       * The analysis options require an active subscription to the relevant add-on. Learn more about [registering for add-ons](https://cloudinary.com/documentation/cloudinary_add_ons#registering_for_add_ons).
     
       The API supports both Basic Authentication using your Cloudinary API Key and API Secret (which can be found on the Dashboard page of your [Cloudinary Console](https://console.cloudinary.com/pm)) or OAuth2 ([Contact support](https://support.cloudinary.com/hc/en-us/requests/new) for more information regarding OAuth).
-  version: 0.0.3
+  version: 0.0.4
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
   - url: https://api.cloudinary.com/v2
+x-speakeasy-globals:
+  parameters:
+    - $ref: "#/components/parameters/cloudName"
 tags:
   - name: Analysis
     description: Analyze assets
