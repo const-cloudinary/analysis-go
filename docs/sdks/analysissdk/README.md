@@ -3,6 +3,8 @@
 
 ## Overview
 
+Analyze assets
+
 ### Available Operations
 
 * [AnalyzeAiVisionGeneral](#analyzeaivisiongeneral) - Analyze - AI Vision General
@@ -30,8 +32,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -99,8 +101,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -168,8 +170,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -243,8 +245,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -308,8 +310,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -373,8 +375,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -438,8 +440,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -503,8 +505,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -568,8 +570,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -633,8 +635,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -698,8 +700,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -763,8 +765,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )
@@ -831,8 +833,8 @@ package main
 
 import(
 	"os"
-	"github.com/cloudinary/analysis-go/models/components"
-	analysisgo "github.com/cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	analysisgo "github.com/const-cloudinary/analysis-go"
 	"context"
 	"log"
 )

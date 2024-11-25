@@ -4,7 +4,7 @@ package components
 
 type Security struct {
 	BasicAuth *SchemeBasicAuth `security:"scheme,type=http,subtype=basic"`
-	OAuth2    *string          `security:"scheme,type=oauth2,name=Authorization,env=analysis_o_auth2"`
+	OAuth2    *string          `security:"scheme,type=oauth2,name=Authorization,env=cloudinary_o_auth2"`
 }
 
 func (o *Security) GetBasicAuth() *SchemeBasicAuth {

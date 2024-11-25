@@ -13,7 +13,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/cloudinary/analysis-go/types"
+	"github.com/const-cloudinary/analysis-go/types"
 
 	"github.com/ericlagergren/decimal"
 )

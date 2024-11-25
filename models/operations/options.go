@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/cloudinary/analysis-go/internal/utils"
-	"github.com/cloudinary/analysis-go/retry"
+	"github.com/const-cloudinary/analysis-go/internal/utils"
+	"github.com/const-cloudinary/analysis-go/retry"
 	"time"
 )
 

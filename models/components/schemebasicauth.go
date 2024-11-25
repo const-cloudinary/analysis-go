@@ -3,8 +3,8 @@
 package components
 
 type SchemeBasicAuth struct {
-	Username string `security:"name=username,env=analysis_username"`
-	Password string `security:"name=password,env=analysis_password"`
+	Username string `security:"name=username,env=cloudinary_username"`
+	Password string `security:"name=password,env=cloudinary_password"`
 }
 
 func (o *SchemeBasicAuth) GetUsername() string {

@@ -1,19 +1,21 @@
-speakeasyVersion: 1.441.0
+speakeasyVersion: 1.444.3
 sources:
     Cloudinary-OAS:
         sourceNamespace: cloudinary-oas
-        sourceRevisionDigest: sha256:fd26cdd01c1e36495362d2cf86b934bcd10a10aa5b153e17f31491ed93f26387
-        sourceBlobDigest: sha256:e95e555922e1771c20fa3db99b36bb8a740d42317a5f0ec2a919d2d835568218
+        sourceRevisionDigest: sha256:4ca0e8a18c64790c57e19730db9cc00cd90456881b7d168f05c78459701e1c93
+        sourceBlobDigest: sha256:884288daba1e1134e1924d96fb5d46a0182c651d37c49e82463fd4a767423886
         tags:
             - latest
+            - speakeasy-sdk-regen-1732496306
+            - 0.0.3
 targets:
     analysis-go:
         source: Cloudinary-OAS
         sourceNamespace: cloudinary-oas
-        sourceRevisionDigest: sha256:fd26cdd01c1e36495362d2cf86b934bcd10a10aa5b153e17f31491ed93f26387
-        sourceBlobDigest: sha256:e95e555922e1771c20fa3db99b36bb8a740d42317a5f0ec2a919d2d835568218
+        sourceRevisionDigest: sha256:4ca0e8a18c64790c57e19730db9cc00cd90456881b7d168f05c78459701e1c93
+        sourceBlobDigest: sha256:884288daba1e1134e1924d96fb5d46a0182c651d37c49e82463fd4a767423886
         codeSamplesNamespace: cloudinary-oas-code-samples
-        codeSamplesRevisionDigest: sha256:4b67acc62a5dcaa567810bee307ab8eb7d51d59629a92d323ea068d3deb5e01e
+        codeSamplesRevisionDigest: sha256:d3ffe2d27c7d08b3d582d9d567a5b973af3021b8e5ad763303ab6ad412d73354
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
