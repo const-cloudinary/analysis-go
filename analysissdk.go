@@ -28,7 +28,7 @@ func newAnalysisSDK(sdkConfig sdkConfiguration) *AnalysisSDK {
 
 // AnalyzeAiVisionGeneral - Analyze - AI Vision General
 // The General mode serves a wide array of applications by providing detailed answers to diverse questions about an image. Users can inquire about any aspect of an image, such as identifying objects, understanding scenes, or interpreting text within the image.
-func (s *AnalysisSDK) AnalyzeAiVisionGeneral(ctx context.Context, cloudName string, analyzeAIVisionGeneralRequest components.AnalyzeAIVisionGeneralRequest, opts ...operations.Option) (*operations.AnalyzeAiVisionGeneralResponse, error) {
+func (s *AnalysisSDK) AnalyzeAiVisionGeneral(ctx context.Context, analyzeAIVisionGeneralRequest components.AnalyzeAIVisionGeneralRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeAiVisionGeneralResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_ai_vision_general",
@@ -39,6 +39,10 @@ func (s *AnalysisSDK) AnalyzeAiVisionGeneral(ctx context.Context, cloudName stri
 	request := operations.AnalyzeAiVisionGeneralRequest{
 		CloudName:                     cloudName,
 		AnalyzeAIVisionGeneralRequest: analyzeAIVisionGeneralRequest,
+	}
+
+	globals := operations.AnalyzeAiVisionGeneralGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -54,7 +58,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionGeneral(ctx context.Context, cloudName stri
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_general", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_general", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -311,7 +315,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionGeneral(ctx context.Context, cloudName stri
 
 // AnalyzeAiVisionModeration - Analyze - AI Vision Moderation
 // The Moderation mode accepts multiple questions about an image, to which the response provides concise answers of "yes," "no," or "unknown." This functionality allows for a nuanced evaluation of whether the image adheres to specific content policies, creative specs, or aesthetic criteria.
-func (s *AnalysisSDK) AnalyzeAiVisionModeration(ctx context.Context, cloudName string, analyzeAIVisionModerationRequest components.AnalyzeAIVisionModerationRequest, opts ...operations.Option) (*operations.AnalyzeAiVisionModerationResponse, error) {
+func (s *AnalysisSDK) AnalyzeAiVisionModeration(ctx context.Context, analyzeAIVisionModerationRequest components.AnalyzeAIVisionModerationRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeAiVisionModerationResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_ai_vision_moderation",
@@ -322,6 +326,10 @@ func (s *AnalysisSDK) AnalyzeAiVisionModeration(ctx context.Context, cloudName s
 	request := operations.AnalyzeAiVisionModerationRequest{
 		CloudName:                        cloudName,
 		AnalyzeAIVisionModerationRequest: analyzeAIVisionModerationRequest,
+	}
+
+	globals := operations.AnalyzeAiVisionModerationGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -337,7 +345,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionModeration(ctx context.Context, cloudName s
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_moderation", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_moderation", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -594,7 +602,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionModeration(ctx context.Context, cloudName s
 
 // AnalyzeAiVisionTagging - Analyze - AI Vision Tagging
 // The Tagging mode accepts a list of tag names along with their corresponding descriptions. If the image matches the description, which may encompass various elements, it will be appropriately tagged. This approach enables customers to align with their own brand taxonomy, offering a dynamic, flexible, and open method for image classification.
-func (s *AnalysisSDK) AnalyzeAiVisionTagging(ctx context.Context, cloudName string, analyzeAIVisionTaggingRequest components.AnalyzeAIVisionTaggingRequest, opts ...operations.Option) (*operations.AnalyzeAiVisionTaggingResponse, error) {
+func (s *AnalysisSDK) AnalyzeAiVisionTagging(ctx context.Context, analyzeAIVisionTaggingRequest components.AnalyzeAIVisionTaggingRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeAiVisionTaggingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_ai_vision_tagging",
@@ -605,6 +613,10 @@ func (s *AnalysisSDK) AnalyzeAiVisionTagging(ctx context.Context, cloudName stri
 	request := operations.AnalyzeAiVisionTaggingRequest{
 		CloudName:                     cloudName,
 		AnalyzeAIVisionTaggingRequest: analyzeAIVisionTaggingRequest,
+	}
+
+	globals := operations.AnalyzeAiVisionTaggingGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -620,7 +632,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionTagging(ctx context.Context, cloudName stri
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_tagging", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/ai_vision_tagging", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -877,7 +889,7 @@ func (s *AnalysisSDK) AnalyzeAiVisionTagging(ctx context.Context, cloudName stri
 
 // AnalyzeCaptioning - Analyze - Captioning
 // Provides a caption for an image.
-func (s *AnalysisSDK) AnalyzeCaptioning(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeCaptioningResponse, error) {
+func (s *AnalysisSDK) AnalyzeCaptioning(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeCaptioningResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_captioning",
@@ -888,6 +900,10 @@ func (s *AnalysisSDK) AnalyzeCaptioning(ctx context.Context, cloudName string, b
 	request := operations.AnalyzeCaptioningRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeCaptioningGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -903,7 +919,7 @@ func (s *AnalysisSDK) AnalyzeCaptioning(ctx context.Context, cloudName string, b
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/captioning", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/captioning", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1160,7 +1176,7 @@ func (s *AnalysisSDK) AnalyzeCaptioning(ctx context.Context, cloudName string, b
 
 // AnalyzeCldFashion - Analyze - Cld-Fashion
 // Analyze an image using the [Cld-Fashion](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's fashion model is specifically dedicated to items of clothing. The response includes attributes of the clothing identified, for example whether the garment contains pockets, its material and the fastenings used.
-func (s *AnalysisSDK) AnalyzeCldFashion(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeCldFashionResponse, error) {
+func (s *AnalysisSDK) AnalyzeCldFashion(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeCldFashionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_cld_fashion",
@@ -1171,6 +1187,10 @@ func (s *AnalysisSDK) AnalyzeCldFashion(ctx context.Context, cloudName string, b
 	request := operations.AnalyzeCldFashionRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeCldFashionGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -1186,7 +1206,7 @@ func (s *AnalysisSDK) AnalyzeCldFashion(ctx context.Context, cloudName string, b
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/cld_fashion", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/cld_fashion", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1443,7 +1463,7 @@ func (s *AnalysisSDK) AnalyzeCldFashion(ctx context.Context, cloudName string, b
 
 // AnalyzeCldText - Analyze - Cld-Text
 // Analyze an image using the [Cld-Text](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's text model tells you if your image includes text, and where it's located. Used with image tagging, you can then search for images that contain blocks of text. Used with object-aware cropping, you can choose to keep only the text part, or specify a crop that avoids the text.
-func (s *AnalysisSDK) AnalyzeCldText(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeCldTextResponse, error) {
+func (s *AnalysisSDK) AnalyzeCldText(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeCldTextResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_cld_text",
@@ -1454,6 +1474,10 @@ func (s *AnalysisSDK) AnalyzeCldText(ctx context.Context, cloudName string, base
 	request := operations.AnalyzeCldTextRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeCldTextGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -1469,7 +1493,7 @@ func (s *AnalysisSDK) AnalyzeCldText(ctx context.Context, cloudName string, base
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/cld_text", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/cld_text", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1726,7 +1750,7 @@ func (s *AnalysisSDK) AnalyzeCldText(ctx context.Context, cloudName string, base
 
 // AnalyzeCoco - Analyze - Coco
 // Analyze an image using the [Coco](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [Common Objects in Context](https://cocodataset.org/) model contains just 80 common objects.
-func (s *AnalysisSDK) AnalyzeCoco(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeCocoResponse, error) {
+func (s *AnalysisSDK) AnalyzeCoco(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeCocoResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_coco",
@@ -1737,6 +1761,10 @@ func (s *AnalysisSDK) AnalyzeCoco(ctx context.Context, cloudName string, baseAna
 	request := operations.AnalyzeCocoRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeCocoGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -1752,7 +1780,7 @@ func (s *AnalysisSDK) AnalyzeCoco(ctx context.Context, cloudName string, baseAna
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/coco", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/coco", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2009,7 +2037,7 @@ func (s *AnalysisSDK) AnalyzeCoco(ctx context.Context, cloudName string, baseAna
 
 // AnalyzeGoogleTagging - Analyze - Google Tagging
 // Provides tags for an image using Google's tagging service.
-func (s *AnalysisSDK) AnalyzeGoogleTagging(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeGoogleTaggingResponse, error) {
+func (s *AnalysisSDK) AnalyzeGoogleTagging(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeGoogleTaggingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_google_tagging",
@@ -2020,6 +2048,10 @@ func (s *AnalysisSDK) AnalyzeGoogleTagging(ctx context.Context, cloudName string
 	request := operations.AnalyzeGoogleTaggingRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeGoogleTaggingGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -2035,7 +2067,7 @@ func (s *AnalysisSDK) AnalyzeGoogleTagging(ctx context.Context, cloudName string
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/google_tagging", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/google_tagging", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2292,7 +2324,7 @@ func (s *AnalysisSDK) AnalyzeGoogleTagging(ctx context.Context, cloudName string
 
 // AnalyzeHumanAnatomy - Analyze - Human Anatomy
 // Analyze an image using the [Human Anatomy](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's human anatomy model identifies parts of the human body in an image. It works best when the majority of a human body is detected in the image.
-func (s *AnalysisSDK) AnalyzeHumanAnatomy(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeHumanAnatomyResponse, error) {
+func (s *AnalysisSDK) AnalyzeHumanAnatomy(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeHumanAnatomyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_human_anatomy",
@@ -2303,6 +2335,10 @@ func (s *AnalysisSDK) AnalyzeHumanAnatomy(ctx context.Context, cloudName string,
 	request := operations.AnalyzeHumanAnatomyRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeHumanAnatomyGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -2318,7 +2354,7 @@ func (s *AnalysisSDK) AnalyzeHumanAnatomy(ctx context.Context, cloudName string,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/human_anatomy", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/human_anatomy", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2575,7 +2611,7 @@ func (s *AnalysisSDK) AnalyzeHumanAnatomy(ctx context.Context, cloudName string,
 
 // AnalyzeLvis - Analyze - Lvis
 // Analyze an image using the [Lvis](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [Large Vocabulary Instance Segmentation](https://www.lvisdataset.org/) model contains thousands of general objects.
-func (s *AnalysisSDK) AnalyzeLvis(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeLvisResponse, error) {
+func (s *AnalysisSDK) AnalyzeLvis(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeLvisResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_lvis",
@@ -2586,6 +2622,10 @@ func (s *AnalysisSDK) AnalyzeLvis(ctx context.Context, cloudName string, baseAna
 	request := operations.AnalyzeLvisRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeLvisGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -2601,7 +2641,7 @@ func (s *AnalysisSDK) AnalyzeLvis(ctx context.Context, cloudName string, baseAna
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/lvis", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/lvis", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2858,7 +2898,7 @@ func (s *AnalysisSDK) AnalyzeLvis(ctx context.Context, cloudName string, baseAna
 
 // AnalyzeShopClassifier - Analyze - Shop Classifier
 // Analyze an image using the [Shop Classifier](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. Cloudinary's shop classifier model detects if the image is a product image taken in a studio, or if it's a natural image.
-func (s *AnalysisSDK) AnalyzeShopClassifier(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeShopClassifierResponse, error) {
+func (s *AnalysisSDK) AnalyzeShopClassifier(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeShopClassifierResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_shop_classifier",
@@ -2869,6 +2909,10 @@ func (s *AnalysisSDK) AnalyzeShopClassifier(ctx context.Context, cloudName strin
 	request := operations.AnalyzeShopClassifierRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeShopClassifierGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -2884,7 +2928,7 @@ func (s *AnalysisSDK) AnalyzeShopClassifier(ctx context.Context, cloudName strin
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/shop_classifier", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/shop_classifier", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -3141,7 +3185,7 @@ func (s *AnalysisSDK) AnalyzeShopClassifier(ctx context.Context, cloudName strin
 
 // AnalyzeUnidet - Analyze - Unidet
 // Analyze an image using the [Unidet](https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon#ai_based_image_captioning) content-aware detection model. The [UniDet](https://github.com/xingyizhou/UniDet) model is a unified model, combining a number of object models, including [Objects365](https://www.objects365.org/overview.html), which focuses on diverse objects in the wild.
-func (s *AnalysisSDK) AnalyzeUnidet(ctx context.Context, cloudName string, baseAnalyzeRequest components.BaseAnalyzeRequest, opts ...operations.Option) (*operations.AnalyzeUnidetResponse, error) {
+func (s *AnalysisSDK) AnalyzeUnidet(ctx context.Context, baseAnalyzeRequest components.BaseAnalyzeRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeUnidetResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_unidet",
@@ -3152,6 +3196,10 @@ func (s *AnalysisSDK) AnalyzeUnidet(ctx context.Context, cloudName string, baseA
 	request := operations.AnalyzeUnidetRequest{
 		CloudName:          cloudName,
 		BaseAnalyzeRequest: baseAnalyzeRequest,
+	}
+
+	globals := operations.AnalyzeUnidetGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -3167,7 +3215,7 @@ func (s *AnalysisSDK) AnalyzeUnidet(ctx context.Context, cloudName string, baseA
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/unidet", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/analysis/{cloud_name}/analyze/unidet", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -3426,7 +3474,7 @@ func (s *AnalysisSDK) AnalyzeUnidet(ctx context.Context, cloudName string, baseA
 // Analyzes an asset with the requested analysis type.
 //
 // Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *AnalysisSDK) AnalyzeURI(ctx context.Context, cloudName string, analyzeURIRequest components.AnalyzeURIRequest, opts ...operations.Option) (*operations.AnalyzeURIResponse, error) {
+func (s *AnalysisSDK) AnalyzeURI(ctx context.Context, analyzeURIRequest components.AnalyzeURIRequest, cloudName *string, opts ...operations.Option) (*operations.AnalyzeURIResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "analyze_uri",
@@ -3437,6 +3485,10 @@ func (s *AnalysisSDK) AnalyzeURI(ctx context.Context, cloudName string, analyzeU
 	request := operations.AnalyzeURIRequest{
 		CloudName:         cloudName,
 		AnalyzeURIRequest: analyzeURIRequest,
+	}
+
+	globals := operations.AnalyzeURIGlobals{
+		CloudName: s.sdkConfiguration.Globals.CloudName,
 	}
 
 	o := operations.Options{}
@@ -3452,7 +3504,7 @@ func (s *AnalysisSDK) AnalyzeURI(ctx context.Context, cloudName string, analyzeU
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/{cloud_name}/analysis/analyze/uri", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/{cloud_name}/analysis/analyze/uri", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

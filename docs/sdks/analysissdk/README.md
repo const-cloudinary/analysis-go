@@ -46,10 +46,11 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+    res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -59,7 +60,7 @@ func main() {
             "Describe this image in detail",
             "Does this image contain an insect?",
         },
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -74,8 +75,8 @@ func main() {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |                                                                                                      |
-| `cloudName`                                                                                          | *string*                                                                                             | :heavy_check_mark:                                                                                   | The name of your Cloudinary cloud                                                                    | your-cloud-name                                                                                      |
 | `analyzeAIVisionGeneralRequest`                                                                      | [components.AnalyzeAIVisionGeneralRequest](../../models/components/analyzeaivisiongeneralrequest.md) | :heavy_check_mark:                                                                                   | A JSON object containing request parameters                                                          |                                                                                                      |
+| `cloudName`                                                                                          | **string*                                                                                            | :heavy_minus_sign:                                                                                   | The name of your Cloudinary cloud                                                                    | your-cloud-name                                                                                      |
 | `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |                                                                                                      |
 
 ### Response
@@ -115,10 +116,11 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, "your-cloud-name", components.AnalyzeAIVisionModerationRequest{
+    res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, components.AnalyzeAIVisionModerationRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -128,7 +130,7 @@ func main() {
             "Does this image contain any violent activity?",
             "Is there any nudity in the image?",
         },
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -143,8 +145,8 @@ func main() {
 | Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                | Example                                                                                                    |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |                                                                                                            |
-| `cloudName`                                                                                                | *string*                                                                                                   | :heavy_check_mark:                                                                                         | The name of your Cloudinary cloud                                                                          | your-cloud-name                                                                                            |
 | `analyzeAIVisionModerationRequest`                                                                         | [components.AnalyzeAIVisionModerationRequest](../../models/components/analyzeaivisionmoderationrequest.md) | :heavy_check_mark:                                                                                         | A JSON object containing request parameters                                                                |                                                                                                            |
+| `cloudName`                                                                                                | **string*                                                                                                  | :heavy_minus_sign:                                                                                         | The name of your Cloudinary cloud                                                                          | your-cloud-name                                                                                            |
 | `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |                                                                                                            |
 
 ### Response
@@ -184,10 +186,11 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, "your-cloud-name", components.AnalyzeAIVisionTaggingRequest{
+    res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, components.AnalyzeAIVisionTaggingRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -203,7 +206,7 @@ func main() {
                 Description: "Does the image contain any tables, chairs, couches or sofas?",
             },
         },
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -218,8 +221,8 @@ func main() {
 | Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |                                                                                                      |
-| `cloudName`                                                                                          | *string*                                                                                             | :heavy_check_mark:                                                                                   | The name of your Cloudinary cloud                                                                    | your-cloud-name                                                                                      |
 | `analyzeAIVisionTaggingRequest`                                                                      | [components.AnalyzeAIVisionTaggingRequest](../../models/components/analyzeaivisiontaggingrequest.md) | :heavy_check_mark:                                                                                   | A JSON object containing request parameters                                                          |                                                                                                      |
+| `cloudName`                                                                                          | **string*                                                                                            | :heavy_minus_sign:                                                                                   | The name of your Cloudinary cloud                                                                    | your-cloud-name                                                                                      |
 | `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |                                                                                                      |
 
 ### Response
@@ -259,16 +262,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeCaptioning(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeCaptioning(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -283,8 +287,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -324,16 +328,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeCldFashion(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeCldFashion(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -348,8 +353,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -389,16 +394,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeCldText(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeCldText(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -413,8 +419,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -454,16 +460,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeCoco(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeCoco(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -478,8 +485,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -519,16 +526,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeGoogleTagging(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeGoogleTagging(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -543,8 +551,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -584,16 +592,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -608,8 +617,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -649,16 +658,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeLvis(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeLvis(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -673,8 +683,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -714,16 +724,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeShopClassifier(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeShopClassifier(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -738,8 +749,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -779,16 +790,17 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeUnidet(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+    res, err := s.Analysis.AnalyzeUnidet(ctx, components.BaseAnalyzeRequest{
         Source: components.CreateSourceURI(
             components.URI{
                 URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
             },
         ),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -803,8 +815,8 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |                                                                                |
-| `cloudName`                                                                    | *string*                                                                       | :heavy_check_mark:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `baseAnalyzeRequest`                                                           | [components.BaseAnalyzeRequest](../../models/components/baseanalyzerequest.md) | :heavy_check_mark:                                                             | A JSON object containing request parameters                                    |                                                                                |
+| `cloudName`                                                                    | **string*                                                                      | :heavy_minus_sign:                                                             | The name of your Cloudinary cloud                                              | your-cloud-name                                                                |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |                                                                                |
 
 ### Response
@@ -847,12 +859,13 @@ func main() {
                 Password: os.Getenv(""),
             },
         }),
+        analysisgo.WithCloudName("your-cloud-name"),
     )
 
     ctx := context.Background()
-    res, err := s.Analysis.AnalyzeURI(ctx, "your-cloud-name", components.AnalyzeURIRequest{
+    res, err := s.Analysis.AnalyzeURI(ctx, components.AnalyzeURIRequest{
         URI: analysisgo.String("https://res.cloudinary.com/demo/image/upload/sample.jpg"),
-    })
+    }, analysisgo.String("your-cloud-name"))
     if err != nil {
         log.Fatal(err)
     }
@@ -867,8 +880,8 @@ func main() {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |                                                                              |
-| `cloudName`                                                                  | *string*                                                                     | :heavy_check_mark:                                                           | The name of your Cloudinary cloud                                            | your-cloud-name                                                              |
 | `analyzeURIRequest`                                                          | [components.AnalyzeURIRequest](../../models/components/analyzeurirequest.md) | :heavy_check_mark:                                                           | A JSON object containing request parameters                                  |                                                                              |
+| `cloudName`                                                                  | **string*                                                                    | :heavy_minus_sign:                                                           | The name of your Cloudinary cloud                                            | your-cloud-name                                                              |
 | `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |                                                                              |
 
 ### Response

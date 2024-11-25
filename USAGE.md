@@ -18,10 +18,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -31,7 +32,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 		log.Fatal(err)
 	}

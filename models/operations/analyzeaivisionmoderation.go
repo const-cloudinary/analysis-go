@@ -6,16 +6,28 @@ import (
 	"github.com/const-cloudinary/analysis-go/models/components"
 )
 
+type AnalyzeAiVisionModerationGlobals struct {
+	// The name of your Cloudinary cloud
+	CloudName *string `pathParam:"style=simple,explode=false,name=cloud_name"`
+}
+
+func (o *AnalyzeAiVisionModerationGlobals) GetCloudName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CloudName
+}
+
 type AnalyzeAiVisionModerationRequest struct {
 	// The name of your Cloudinary cloud
-	CloudName string `pathParam:"style=simple,explode=false,name=cloud_name"`
+	CloudName *string `pathParam:"style=simple,explode=false,name=cloud_name"`
 	// A JSON object containing request parameters
 	AnalyzeAIVisionModerationRequest components.AnalyzeAIVisionModerationRequest `request:"mediaType=application/json"`
 }
 
-func (o *AnalyzeAiVisionModerationRequest) GetCloudName() string {
+func (o *AnalyzeAiVisionModerationRequest) GetCloudName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.CloudName
 }

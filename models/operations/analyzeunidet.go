@@ -6,16 +6,28 @@ import (
 	"github.com/const-cloudinary/analysis-go/models/components"
 )
 
+type AnalyzeUnidetGlobals struct {
+	// The name of your Cloudinary cloud
+	CloudName *string `pathParam:"style=simple,explode=false,name=cloud_name"`
+}
+
+func (o *AnalyzeUnidetGlobals) GetCloudName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CloudName
+}
+
 type AnalyzeUnidetRequest struct {
 	// The name of your Cloudinary cloud
-	CloudName string `pathParam:"style=simple,explode=false,name=cloud_name"`
+	CloudName *string `pathParam:"style=simple,explode=false,name=cloud_name"`
 	// A JSON object containing request parameters
 	BaseAnalyzeRequest components.BaseAnalyzeRequest `request:"mediaType=application/json"`
 }
 
-func (o *AnalyzeUnidetRequest) GetCloudName() string {
+func (o *AnalyzeUnidetRequest) GetCloudName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.CloudName
 }

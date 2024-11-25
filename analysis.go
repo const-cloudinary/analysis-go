@@ -5,6 +5,7 @@ package analysisgo
 import (
 	"context"
 	"fmt"
+	"github.com/const-cloudinary/analysis-go/internal/globals"
 	"github.com/const-cloudinary/analysis-go/internal/hooks"
 	"github.com/const-cloudinary/analysis-go/internal/utils"
 	"github.com/const-cloudinary/analysis-go/models/components"
@@ -54,6 +55,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
+	Globals           globals.Globals
 	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 	Timeout           *time.Duration
@@ -163,6 +165,13 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
+// WithCloudName allows setting the CloudName parameter for all supported operations
+func WithCloudName(cloudName string) SDKOption {
+	return func(sdk *Analysis) {
+		sdk.sdkConfiguration.Globals.CloudName = &cloudName
+	}
+}
+
 func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *Analysis) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -175,22 +184,35 @@ func WithTimeout(timeout time.Duration) SDKOption {
 		sdk.sdkConfiguration.Timeout = &timeout
 	}
 }
+func (sdk *Analysis) fillGlobalsFromEnv() {
+	if sdk.sdkConfiguration.Globals.CloudName == nil {
+		if val := utils.ValueFromEnvVar("CLOUDINARY_CLOUD_NAME", sdk.sdkConfiguration.Globals.CloudName); val != nil {
+			if typedVal, ok := val.(string); ok {
+				sdk.sdkConfiguration.Globals.CloudName = &typedVal
+			}
+		}
+	}
+
+}
 
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Analysis {
 	sdk := &Analysis{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.2.1",
+			OpenAPIDocVersion: "0.0.4",
+			SDKVersion:        "0.3.0",
 			GenVersion:        "2.461.4",
-			UserAgent:         "speakeasy-sdk/go 0.2.1 2.461.4 0.0.3 github.com/const-cloudinary/analysis-go",
+			UserAgent:         "speakeasy-sdk/go 0.3.0 2.461.4 0.0.4 github.com/const-cloudinary/analysis-go",
+			Globals:           globals.Globals{},
 			Hooks:             hooks.New(),
 		},
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
+
+	sdk.fillGlobalsFromEnv()
 
 	if sdk.sdkConfiguration.Security == nil {
 		var envVarSecurity components.Security

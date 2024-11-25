@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38b60592-b153-4ed6-beab-fe9efb55ca7d
 management:
-  docChecksum: 0f6652c937350714a34963c3e2d49927
-  docVersion: 0.0.3
+  docChecksum: 7222d44e3324630dae1767110748a718
+  docVersion: 0.0.4
   speakeasyVersion: 1.444.3
   generationVersion: 2.461.4
-  releaseVersion: 0.2.1
-  configChecksum: 89b1745583c3f44b1902a41c77993778
+  releaseVersion: 0.3.0
+  configChecksum: 64de49eb90595fa20193b57d4a1f7965
   repoURL: https://github.com/const-cloudinary/analysis-go.git
   installationURL: https://github.com/const-cloudinary/analysis-go
 features:
@@ -22,6 +22,7 @@ features:
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
+    globals: 2.82.2
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     responseFormat: 0.1.2
@@ -160,30 +161,43 @@ generatedFiles:
   - docs/models/components/uri.md
   - docs/models/components/usage.md
   - docs/models/components/value.md
+  - docs/models/operations/analyzeaivisiongeneralglobals.md
   - docs/models/operations/analyzeaivisiongeneralrequest.md
   - docs/models/operations/analyzeaivisiongeneralresponse.md
+  - docs/models/operations/analyzeaivisionmoderationglobals.md
   - docs/models/operations/analyzeaivisionmoderationrequest.md
   - docs/models/operations/analyzeaivisionmoderationresponse.md
+  - docs/models/operations/analyzeaivisiontaggingglobals.md
   - docs/models/operations/analyzeaivisiontaggingrequest.md
   - docs/models/operations/analyzeaivisiontaggingresponse.md
+  - docs/models/operations/analyzecaptioningglobals.md
   - docs/models/operations/analyzecaptioningrequest.md
   - docs/models/operations/analyzecaptioningresponse.md
+  - docs/models/operations/analyzecldfashionglobals.md
   - docs/models/operations/analyzecldfashionrequest.md
   - docs/models/operations/analyzecldfashionresponse.md
+  - docs/models/operations/analyzecldtextglobals.md
   - docs/models/operations/analyzecldtextrequest.md
   - docs/models/operations/analyzecldtextresponse.md
+  - docs/models/operations/analyzecocoglobals.md
   - docs/models/operations/analyzecocorequest.md
   - docs/models/operations/analyzecocoresponse.md
+  - docs/models/operations/analyzegoogletaggingglobals.md
   - docs/models/operations/analyzegoogletaggingrequest.md
   - docs/models/operations/analyzegoogletaggingresponse.md
+  - docs/models/operations/analyzehumananatomyglobals.md
   - docs/models/operations/analyzehumananatomyrequest.md
   - docs/models/operations/analyzehumananatomyresponse.md
+  - docs/models/operations/analyzelvisglobals.md
   - docs/models/operations/analyzelvisrequest.md
   - docs/models/operations/analyzelvisresponse.md
+  - docs/models/operations/analyzeshopclassifierglobals.md
   - docs/models/operations/analyzeshopclassifierrequest.md
   - docs/models/operations/analyzeshopclassifierresponse.md
+  - docs/models/operations/analyzeunidetglobals.md
   - docs/models/operations/analyzeunidetrequest.md
   - docs/models/operations/analyzeunidetresponse.md
+  - docs/models/operations/analyzeuriglobals.md
   - docs/models/operations/analyzeurirequest.md
   - docs/models/operations/analyzeuriresponse.md
   - docs/models/operations/option.md
@@ -195,6 +209,7 @@ generatedFiles:
   - docs/sdks/analysis/README.md
   - docs/sdks/analysissdk/README.md
   - go.mod
+  - internal/globals/globals.go
   - internal/hooks/hooks.go
   - internal/utils/contenttype.go
   - internal/utils/form.go
@@ -737,7 +752,8 @@ examples:
           application/json: {"data": {"analysis": {"model_version": 1}}, "limits": {"usage": {"type": "ai_vision", "count": 123}}, "request_id": "17c3b70c5096df0e77e838323abb7029"}
         "400":
           application/json: {"error": {"category": "user_error", "code": "MA_00001", "message": "missing parameters", "request_id": "17c3b70c5096df0e77e838323abb7029"}}
-        "408": {}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   analyze_unidet:
     speakeasy-default-analyze-unidet:
       requestBody:
