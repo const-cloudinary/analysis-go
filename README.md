@@ -1,10 +1,10 @@
-# CLoudinary Analysis API Go SDK
+# Cloudinary Analysis API Go SDK
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/cloudinary/analysis-go.svg)](https://pkg.go.dev/github.com/cloudinary/analysis-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/cloudinary/analysis-go)](https://goreportcard.com/report/github.com/cloudinary/analysis-go)
 [![codecov](https://codecov.io/gh/cloudinary/analysis-go/branch/main/graph/badge.svg?token=3ZQZQZQZQZ)](https://codecov.io/gh/cloudinary/analysis-go)
 
-Developer-friendly & type-safe Go SDK specifically catered to leverage *github.com/cloudinary/analysis-go* API.
+Developer-friendly & type-safe Go SDK specifically catered to leverage *github.com/const-cloudinary/analysis-go* API.
 
 <div align="left">
     <a href="https://www.speakeasy.com/?utm_source=github-com/cloudinary/analysis-go&utm_campaign=go"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
