@@ -21,7 +21,7 @@ go:
   allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
-  envVarPrefix: ANALYSIS
+  envVarPrefix: CLOUDINARY
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -35,5 +35,5 @@ go:
   maxMethodParams: 4
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: github.com/cloudinary/analysis-go
+  packageName: github.com/const-cloudinary/analysis-go
   responseFormat: envelope-http

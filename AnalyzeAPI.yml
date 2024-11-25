@@ -773,6 +773,7 @@ components:
         analysis_type:
           $ref: '#/components/schemas/AnalysisType'
     BaseAnalyzeRequest:
+      type: object
       properties:
         source:
           $ref: "#/components/schemas/Source"
@@ -877,6 +878,7 @@ components:
         - type: object
           properties:
             data:
+              type: object
               properties:
                 entity:
                   type: string

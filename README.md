@@ -1,4 +1,8 @@
-# github.com/cloudinary/analysis-go
+# CLoudinary Analysis API Go SDK
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/cloudinary/analysis-go.svg)](https://pkg.go.dev/github.com/cloudinary/analysis-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cloudinary/analysis-go)](https://goreportcard.com/report/github.com/cloudinary/analysis-go)
+[![codecov](https://codecov.io/gh/cloudinary/analysis-go/branch/main/graph/badge.svg?token=3ZQZQZQZQZ)](https://codecov.io/gh/cloudinary/analysis-go)
 
 Developer-friendly & type-safe Go SDK specifically catered to leverage *github.com/cloudinary/analysis-go* API.
 
@@ -8,15 +12,6 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *github.c
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
 </div>
-
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasy.com/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasy.com/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
 
 <!-- Start Summary [summary] -->
 ## Summary
