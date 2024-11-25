@@ -23,7 +23,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -33,7 +33,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_URIExample(t *testing.T) {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionGeneralResponse{
@@ -71,7 +71,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
@@ -81,7 +81,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_AssetIDExample(t *testing.T) {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionGeneralResponse{
@@ -109,7 +109,50 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionGeneral(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+		Prompts: []string{
+			"[\"Please describe this image in detail\",\"Does this image contain an animal?\"]",
+		},
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeAIVisionGeneralResponse{
+		Data: &components.Data{
+			Analysis: &components.AIVisionGeneralAnalysisData{
+				Responses: []components.Responses{
+					components.Responses{
+						Value: analysisgo.String("The image contains one cat."),
+					},
+					components.Responses{
+						Value: analysisgo.String("The cat is on top of the table."),
+					},
+				},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeAIVisionGeneralResponse)
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionGeneral_(t *testing.T) {
@@ -123,7 +166,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -133,7 +176,7 @@ func TestAnalysisSDK_AnalyzeAiVisionGeneral_(t *testing.T) {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionGeneralResponse{
@@ -171,7 +214,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, "your-cloud-name", components.AnalyzeAIVisionModerationRequest{
+	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, components.AnalyzeAIVisionModerationRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -181,7 +224,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_URIExample(t *testing.T) {
 			"Does this image contain any violent activity?",
 			"Is there any nudity in the image?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionModerationResponse{
@@ -221,7 +264,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, "your-cloud-name", components.AnalyzeAIVisionModerationRequest{
+	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, components.AnalyzeAIVisionModerationRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
@@ -231,7 +274,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_AssetIDExample(t *testing.T) {
 			"Does this image contain any violent activity?",
 			"Is there any nudity in the image?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionModerationResponse{
@@ -261,7 +304,52 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionModeration(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, components.AnalyzeAIVisionModerationRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+		RejectionQuestions: []string{
+			"Does the image contain any violent activity?",
+		},
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeAIVisionModerationResponse{
+		Data: &components.AnalyzeAIVisionModerationResponseData{
+			Analysis: &components.AIVisionModerationAnalysisData{
+				Responses: []components.AIVisionModerationAnalysisDataResponses{
+					components.AIVisionModerationAnalysisDataResponses{
+						Prompt: analysisgo.String("Does the image contain any violent activity?"),
+						Value:  components.ValueNo.ToPointer(),
+					},
+					components.AIVisionModerationAnalysisDataResponses{
+						Prompt: analysisgo.String("Is there any nudity in the image?"),
+						Value:  components.ValueYes.ToPointer(),
+					},
+				},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeAIVisionModerationResponse)
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionModeration_(t *testing.T) {
@@ -275,7 +363,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, "your-cloud-name", components.AnalyzeAIVisionModerationRequest{
+	res, err := s.Analysis.AnalyzeAiVisionModeration(ctx, components.AnalyzeAIVisionModerationRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -285,7 +373,7 @@ func TestAnalysisSDK_AnalyzeAiVisionModeration_(t *testing.T) {
 			"Does this image contain any violent activity?",
 			"Is there any nudity in the image?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionModerationResponse{
@@ -325,7 +413,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, "your-cloud-name", components.AnalyzeAIVisionTaggingRequest{
+	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, components.AnalyzeAIVisionTaggingRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -341,7 +429,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_URIExample(t *testing.T) {
 				Description: "Does the image contain any tables, chairs, couches or sofas?",
 			},
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionTaggingResponse{
@@ -379,7 +467,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, "your-cloud-name", components.AnalyzeAIVisionTaggingRequest{
+	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, components.AnalyzeAIVisionTaggingRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
@@ -395,7 +483,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_AssetIDExample(t *testing.T) {
 				Description: "Does the image contain any tables, chairs, couches or sofas?",
 			},
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionTaggingResponse{
@@ -423,7 +511,53 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionTagging(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, components.AnalyzeAIVisionTaggingRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+		TagDefinitions: []components.TagDefinitions{
+			components.TagDefinitions{
+				Name:        "cigarettes",
+				Description: "Does the image contain a pack of cigarettes?",
+			},
+		},
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeAIVisionTaggingResponse{
+		Data: &components.AnalyzeAIVisionTaggingResponseData{
+			Analysis: &components.AIVisionTaggingAnalysisData{
+				Tags: []components.Tags{
+					components.Tags{
+						Name: analysisgo.String("cat"),
+					},
+					components.Tags{
+						Name: analysisgo.String("table"),
+					},
+				},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeAIVisionTaggingResponse)
 }
 
 func TestAnalysisSDK_AnalyzeAiVisionTagging_(t *testing.T) {
@@ -437,7 +571,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, "your-cloud-name", components.AnalyzeAIVisionTaggingRequest{
+	res, err := s.Analysis.AnalyzeAiVisionTagging(ctx, components.AnalyzeAIVisionTaggingRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -453,7 +587,7 @@ func TestAnalysisSDK_AnalyzeAiVisionTagging_(t *testing.T) {
 				Description: "Does the image contain any tables, chairs, couches or sofas?",
 			},
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeAIVisionTaggingResponse{
@@ -491,13 +625,13 @@ func TestAnalysisSDK_AnalyzeCaptioning_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCaptioning(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCaptioning(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCaptioningResponse{
@@ -530,13 +664,13 @@ func TestAnalysisSDK_AnalyzeCaptioning_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCaptioning(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCaptioning(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCaptioningResponse{
@@ -559,7 +693,42 @@ func TestAnalysisSDK_AnalyzeCaptioning_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeCaptioning(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeCaptioning(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeCaptioningResponse{
+		Data: &components.AnalyzeCaptioningResponseData{
+			Analysis: &components.CaptioningAnalysisData{
+				Data: components.CaptioningAnalysisDataData{
+					Caption: "A cat sitting on a table",
+				},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeCaptioningResponse)
 }
 
 func TestAnalysisSDK_AnalyzeCaptioning_(t *testing.T) {
@@ -573,13 +742,13 @@ func TestAnalysisSDK_AnalyzeCaptioning_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCaptioning(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCaptioning(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCaptioningResponse{
@@ -612,13 +781,13 @@ func TestAnalysisSDK_AnalyzeCldFashion_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldFashion(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldFashion(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldFashionResponse{
@@ -649,13 +818,13 @@ func TestAnalysisSDK_AnalyzeCldFashion_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldFashion(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldFashion(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldFashionResponse{
@@ -676,7 +845,40 @@ func TestAnalysisSDK_AnalyzeCldFashion_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeCldFashion(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeCldFashion(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceURI(
+			components.URI{
+				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeCldFashionResponse{
+		Data: &components.AnalyzeCldFashionResponseData{
+			Analysis: &components.CldFashionAnalysisData{
+				Tags:         components.CldFashionAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeCldFashionResponse)
 }
 
 func TestAnalysisSDK_AnalyzeCldFashion_(t *testing.T) {
@@ -690,13 +892,13 @@ func TestAnalysisSDK_AnalyzeCldFashion_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldFashion(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldFashion(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldFashionResponse{
@@ -727,13 +929,13 @@ func TestAnalysisSDK_AnalyzeCldText_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldText(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldText(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldTextResponse{
@@ -764,13 +966,13 @@ func TestAnalysisSDK_AnalyzeCldText_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldText(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldText(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldTextResponse{
@@ -791,7 +993,40 @@ func TestAnalysisSDK_AnalyzeCldText_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeCldText(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeCldText(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeCldTextResponse{
+		Data: &components.AnalyzeCldTextResponseData{
+			Analysis: &components.CldTextAnalysisData{
+				Tags:         components.CldTextAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeCldTextResponse)
 }
 
 func TestAnalysisSDK_AnalyzeCldText_(t *testing.T) {
@@ -805,13 +1040,13 @@ func TestAnalysisSDK_AnalyzeCldText_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCldText(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCldText(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCldTextResponse{
@@ -842,13 +1077,13 @@ func TestAnalysisSDK_AnalyzeCoco_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCoco(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCoco(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCocoResponse{
@@ -879,13 +1114,13 @@ func TestAnalysisSDK_AnalyzeCoco_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCoco(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCoco(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCocoResponse{
@@ -906,7 +1141,40 @@ func TestAnalysisSDK_AnalyzeCoco_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeCoco(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeCoco(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceURI(
+			components.URI{
+				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeCocoResponse{
+		Data: &components.AnalyzeCocoResponseData{
+			Analysis: &components.CocoAnalysisData{
+				Tags:         components.CocoAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeCocoResponse)
 }
 
 func TestAnalysisSDK_AnalyzeCoco_(t *testing.T) {
@@ -920,13 +1188,13 @@ func TestAnalysisSDK_AnalyzeCoco_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeCoco(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeCoco(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeCocoResponse{
@@ -957,13 +1225,13 @@ func TestAnalysisSDK_AnalyzeGoogleTagging_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeGoogleTaggingResponse{
@@ -1004,13 +1272,13 @@ func TestAnalysisSDK_AnalyzeGoogleTagging_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeGoogleTaggingResponse{
@@ -1041,7 +1309,50 @@ func TestAnalysisSDK_AnalyzeGoogleTagging_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeGoogleTagging(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeGoogleTaggingResponse{
+		Data: &components.AnalyzeGoogleTaggingResponseData{
+			Analysis: &components.GoogleTaggingAnalysisData{
+				LabelAnnotations: components.LabelAnnotations{
+					Labels: []components.Labels{
+						components.Labels{
+							Label: "cat",
+							Score: 0.9,
+						},
+						components.Labels{
+							Label: "table",
+							Score: 0.8,
+						},
+					},
+				},
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeGoogleTaggingResponse)
 }
 
 func TestAnalysisSDK_AnalyzeGoogleTagging_(t *testing.T) {
@@ -1055,13 +1366,13 @@ func TestAnalysisSDK_AnalyzeGoogleTagging_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeGoogleTagging(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeGoogleTaggingResponse{
@@ -1102,13 +1413,13 @@ func TestAnalysisSDK_AnalyzeHumanAnatomy_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeHumanAnatomyResponse{
@@ -1139,13 +1450,13 @@ func TestAnalysisSDK_AnalyzeHumanAnatomy_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeHumanAnatomyResponse{
@@ -1166,7 +1477,40 @@ func TestAnalysisSDK_AnalyzeHumanAnatomy_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeHumanAnatomy(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeHumanAnatomyResponse{
+		Data: &components.AnalyzeHumanAnatomyResponseData{
+			Analysis: &components.HumanAnatomyAnalysisData{
+				Tags:         components.HumanAnatomyAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeHumanAnatomyResponse)
 }
 
 func TestAnalysisSDK_AnalyzeHumanAnatomy_(t *testing.T) {
@@ -1180,13 +1524,13 @@ func TestAnalysisSDK_AnalyzeHumanAnatomy_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeHumanAnatomy(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeHumanAnatomyResponse{
@@ -1217,13 +1561,13 @@ func TestAnalysisSDK_AnalyzeLvis_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeLvis(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeLvis(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeLvisResponse{
@@ -1254,13 +1598,13 @@ func TestAnalysisSDK_AnalyzeLvis_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeLvis(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeLvis(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeLvisResponse{
@@ -1281,7 +1625,40 @@ func TestAnalysisSDK_AnalyzeLvis_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeLvis(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeLvis(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceURI(
+			components.URI{
+				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeLvisResponse{
+		Data: &components.AnalyzeLvisResponseData{
+			Analysis: &components.LvisAnalysisData{
+				Tags:         components.LvisAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeLvisResponse)
 }
 
 func TestAnalysisSDK_AnalyzeLvis_(t *testing.T) {
@@ -1295,13 +1672,13 @@ func TestAnalysisSDK_AnalyzeLvis_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeLvis(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeLvis(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeLvisResponse{
@@ -1332,13 +1709,13 @@ func TestAnalysisSDK_AnalyzeShopClassifier_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeShopClassifier(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeShopClassifier(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeShopClassifierResponse{
@@ -1369,13 +1746,13 @@ func TestAnalysisSDK_AnalyzeShopClassifier_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeShopClassifier(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeShopClassifier(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeShopClassifierResponse{
@@ -1396,7 +1773,40 @@ func TestAnalysisSDK_AnalyzeShopClassifier_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeShopClassifier(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeShopClassifier(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeShopClassifierResponse{
+		Data: &components.AnalyzeShopClassifierResponseData{
+			Analysis: &components.ShopClassifierAnalysisData{
+				Tags:         components.ShopClassifierAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeShopClassifierResponse)
 }
 
 func TestAnalysisSDK_AnalyzeShopClassifier_(t *testing.T) {
@@ -1410,13 +1820,13 @@ func TestAnalysisSDK_AnalyzeShopClassifier_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeShopClassifier(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeShopClassifier(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeShopClassifierResponse{
@@ -1447,13 +1857,13 @@ func TestAnalysisSDK_AnalyzeUnidet_URIExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeUnidet(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeUnidet(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeUnidetResponse{
@@ -1484,13 +1894,13 @@ func TestAnalysisSDK_AnalyzeUnidet_AssetIDExample(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeUnidet(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeUnidet(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceAssetID(
 			components.AssetID{
 				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeUnidetResponse{
@@ -1511,7 +1921,40 @@ func TestAnalysisSDK_AnalyzeUnidet_AssetIDExample(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeUnidet(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeUnidet(ctx, components.BaseAnalyzeRequest{
+		Source: components.CreateSourceAssetID(
+			components.AssetID{
+				AssetID: "e12345b5c456c8901bbb0efc00c0fcf",
+			},
+		),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeUnidetResponse{
+		Data: &components.AnalyzeUnidetResponseData{
+			Analysis: &components.UnidetAnalysisData{
+				Tags:         components.UnidetAnalysisDataTags{},
+				ModelVersion: analysisgo.Int64(1),
+			},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: analysisgo.String("17c3b70c5096df0e77e838323abb7029"),
+	}, res.AnalyzeUnidetResponse)
 }
 
 func TestAnalysisSDK_AnalyzeUnidet_(t *testing.T) {
@@ -1525,13 +1968,13 @@ func TestAnalysisSDK_AnalyzeUnidet_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeUnidet(ctx, "your-cloud-name", components.BaseAnalyzeRequest{
+	res, err := s.Analysis.AnalyzeUnidet(ctx, components.BaseAnalyzeRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
 			},
 		),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeUnidetResponse{
@@ -1552,7 +1995,34 @@ func TestAnalysisSDK_AnalyzeUnidet_(t *testing.T) {
 }
 
 func TestAnalysisSDK_AnalyzeURI(t *testing.T) {
-	assert.Fail(t, "incomplete test found please make sure to address the following errors: [`missing value for required path parameter cloud_name`]")
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeURI(ctx, components.AnalyzeURIRequest{
+		URI: analysisgo.String("https://res.cloudinary.com/demo/image/upload/sample.jpg"),
+	}, analysisgo.String("your-cloud-name"))
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, &components.AnalyzeResponse{
+		Data: components.AnalysisPayload{
+			Entity:   "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+			Analysis: components.Analysis{},
+		},
+		Limits: &components.Limits{
+			Usage: &components.Usage{
+				Type:  components.FeatureAiVision.ToPointer(),
+				Count: analysisgo.Int64(123),
+			},
+		},
+		RequestID: "17c3b70c5096df0e77e838323abb7029",
+	}, res.AnalyzeResponse)
 }
 
 func TestAnalysisSDK_AnalyzeURI_(t *testing.T) {
@@ -1566,9 +2036,9 @@ func TestAnalysisSDK_AnalyzeURI_(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeURI(ctx, "your-cloud-name", components.AnalyzeURIRequest{
+	res, err := s.Analysis.AnalyzeURI(ctx, components.AnalyzeURIRequest{
 		URI: analysisgo.String("https://res.cloudinary.com/demo/image/upload/sample.jpg"),
-	})
+	}, analysisgo.String("your-cloud-name"))
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, &components.AnalyzeResponse{

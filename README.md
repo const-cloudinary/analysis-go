@@ -45,6 +45,7 @@ Currently supports the following analysis options:
 * [SDK Installation](#sdk-installation)
 * [SDK Example Usage](#sdk-example-usage)
 * [Available Resources and Operations](#available-resources-and-operations)
+* [Global Parameters](#global-parameters)
 * [Retries](#retries)
 * [Error Handling](#error-handling)
 * [Server Selection](#server-selection)
@@ -85,10 +86,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -98,7 +100,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -136,6 +138,70 @@ func main() {
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `cloud_name` to `"your-cloud-name"` at SDK initialization and then you do not have to pass the same value on calls to operations like `AnalyzeAiVisionGeneral`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available.
+Global parameters can also be set via environment variable.
+
+| Name      | Type   | Description                       | Environment           |
+| --------- | ------ | --------------------------------- | --------------------- |
+| CloudName | string | The name of your Cloudinary cloud | CLOUDINARY_CLOUD_NAME |
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	analysisgo "github.com/const-cloudinary/analysis-go"
+	"github.com/const-cloudinary/analysis-go/models/components"
+	"log"
+	"os"
+)
+
+func main() {
+	s := analysisgo.New(
+		analysisgo.WithSecurity(components.Security{
+			BasicAuth: &components.SchemeBasicAuth{
+				Username: os.Getenv(""),
+				Password: os.Getenv(""),
+			},
+		}),
+		analysisgo.WithCloudName("your-cloud-name"),
+	)
+
+	ctx := context.Background()
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
+		Source: components.CreateSourceURI(
+			components.URI{
+				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
+			},
+		),
+		Prompts: []string{
+			"Describe this image in detail",
+			"Does this image contain an insect?",
+		},
+	}, analysisgo.String("your-cloud-name"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.AnalyzeAIVisionGeneralResponse != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Global Parameters [global-parameters] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -163,10 +229,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -176,7 +243,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	}, operations.WithRetries(
+	}, analysisgo.String("your-cloud-name"), operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -229,10 +296,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -242,7 +310,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -292,10 +360,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -305,7 +374,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 
 		var e *sdkerrors.ErrorResponse
@@ -357,10 +426,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -370,7 +440,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -443,10 +513,11 @@ func main() {
 				Password: os.Getenv(""),
 			},
 		}),
+		analysisgo.WithCloudName("your-cloud-name"),
 	)
 
 	ctx := context.Background()
-	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, "your-cloud-name", components.AnalyzeAIVisionGeneralRequest{
+	res, err := s.Analysis.AnalyzeAiVisionGeneral(ctx, components.AnalyzeAIVisionGeneralRequest{
 		Source: components.CreateSourceURI(
 			components.URI{
 				URI: "https://res.cloudinary.com/demo/image/upload/sample.jpg",
@@ -456,7 +527,7 @@ func main() {
 			"Describe this image in detail",
 			"Does this image contain an insect?",
 		},
-	})
+	}, analysisgo.String("your-cloud-name"))
 	if err != nil {
 		log.Fatal(err)
 	}
